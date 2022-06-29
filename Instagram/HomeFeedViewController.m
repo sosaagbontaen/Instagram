@@ -11,32 +11,25 @@
 #import "LoginViewController.h"
 
 @interface HomeFeedViewController ()
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *composeButton;
+@property (weak, nonatomic) IBOutlet UIButton *composeButton;
+
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @end
 
 @implementation HomeFeedViewController
 - (IBAction)composeAction:(id)sender {
-}  
+}
 
 - (IBAction)logoutButton:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         SceneDelegate *mySceneDelegate = (SceneDelegate * ) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-
-        
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"FeedNavigationController"];
-        
-        
         if ([mySceneDelegate.window.rootViewController isKindOfClass:[UINavigationController self]]){
             mySceneDelegate.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-            NSLog(@"ONE!");
         }
         else{
             [self dismissViewControllerAnimated:YES completion:^{}];
-            NSLog(@"TWO!");
         }
         
         NSLog(@"User logged out succesfully!");
