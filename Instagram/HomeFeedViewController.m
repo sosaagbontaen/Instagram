@@ -9,11 +9,14 @@
 #import "Parse/Parse.h"
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
+#import "PostCell.h"
 
-@interface HomeFeedViewController ()
+@interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *postTableView;
 @property (weak, nonatomic) IBOutlet UIButton *composeButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (strong, nonatomic) NSArray *arrayOfPosts;
 @end
 
 @implementation HomeFeedViewController
@@ -36,8 +39,40 @@
     }];
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.arrayOfPosts.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    Post *post = self.arrayOfPosts[indexPath.row];
+    cell.post = post;
+    return cell;
+}
+
+- (void)fetchData{
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    //[query whereKey:@"likesCount" greaterThan:@100];
+    query.limit = 20;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.arrayOfPosts = posts;
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        [self.postTableView reloadData];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.postTableView.dataSource = self;
+    self.postTableView.delegate = self;
+    [self fetchData];
     // Do any additional setup after loading the view.
 }
 
