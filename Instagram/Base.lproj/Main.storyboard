@@ -12,7 +12,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -90,7 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="124.7663551401869" y="110.79913606911448"/>
+            <point key="canvasLocation" x="121" y="111"/>
         </scene>
         <!--HomeFeedViewController-->
         <scene sceneID="QXp-Yg-5aj">
@@ -141,7 +141,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
                                 <connections>
                                     <action selector="logoutButton:" destination="o0a-RX-ojQ" eventType="touchUpInside" id="RCp-uk-gGQ"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="logoutSegue" id="FEN-46-YMN"/>
                                 </connections>
                             </button>
                             <connections>
@@ -168,12 +167,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dY-ZF-JZ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1464.9532710280373" y="106.91144708423327"/>
+            <point key="canvasLocation" x="2047" y="111"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="k1w-sp-H81">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="F97-oE-blH" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="FeedNavigationController" storyboardIdentifier="FeedNavigationController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="F97-oE-blH" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mwW-wa-ZFR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iDi-aH-bhe">
@@ -187,7 +186,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="98X-FN-Uro" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="814" y="107"/>
+            <point key="canvasLocation" x="1054" y="111"/>
         </scene>
     </scenes>
     <resources>

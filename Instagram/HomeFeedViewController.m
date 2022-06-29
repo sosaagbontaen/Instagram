@@ -7,15 +7,21 @@
 
 #import "HomeFeedViewController.h"
 #import "Parse/Parse.h"
+#import "SceneDelegate.h"
 
 @interface HomeFeedViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @end
 
 @implementation HomeFeedViewController
+
 - (IBAction)logoutButton:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        [self performSegueWithIdentifier:@"logoutSegue" sender:nil];
+        SceneDelegate *mySceneDelegate = (SceneDelegate * ) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        mySceneDelegate.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        
         NSLog(@"User logged out succesfully!");
     }];
 }
