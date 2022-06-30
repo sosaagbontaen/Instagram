@@ -46,7 +46,9 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://user-images.githubusercontent.com/70764828/176791237-f6e88285-cd2a-4234-8721-dd74e58e26f1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://user-images.githubusercontent.com/70764828/176791237-f6e88285-cd2a-4234-8721-dd74e58e26f1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough 1' />
+
+<img src='https://user-images.githubusercontent.com/70764828/176791461-fc0c951c-244e-42b6-8940-5080615d1f3a.gif' title='Video Walkthrough' width='' alt='Video Walkthrough 2' />
 
 GIF created with [Kap](https://getkap.co/).
 
