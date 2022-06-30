@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (strong, nonatomic) NSArray *arrayOfPosts;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation HomeFeedViewController
@@ -54,6 +55,7 @@
 - (void)fetchData{
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
     //[query whereKey:@"likesCount" greaterThan:@100];
     query.limit = 20;
 
@@ -65,11 +67,15 @@
             NSLog(@"%@", error.localizedDescription);
         }
         [self.postTableView reloadData];
+        [self.refreshControl endRefreshing];
     }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchData) forControlEvents:UIControlEventValueChanged];
+    [self.postTableView insertSubview:self.refreshControl atIndex:0];
     self.postTableView.dataSource = self;
     self.postTableView.delegate = self;
     [self fetchData];
