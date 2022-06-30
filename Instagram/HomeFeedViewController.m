@@ -18,7 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (strong, nonatomic) NSArray *arrayOfPosts;
-@property (weak, nonatomic) IBOutlet UILabel *dateView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 

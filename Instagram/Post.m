@@ -16,6 +16,7 @@
 @dynamic likeCount;
 @dynamic commentCount;
 @dynamic datePosted;
+@dynamic likedByUser;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -27,13 +28,14 @@
     newPost.image = [self getPFFileFromImage:image];
     newPost.author = [PFUser currentUser];
     newPost.caption = caption;
-    newPost.likeCount = @(0);
-    newPost.commentCount = @(0);
-    newPost.datePosted = [NSDate date];
-    
+    newPost.likeCount = 0;
+    newPost.commentCount = 0;
+    newPost.datePosted = [NSDate date];    
+
     
     [newPost saveInBackgroundWithBlock: completion];
 }
+
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
  

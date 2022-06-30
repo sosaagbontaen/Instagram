@@ -23,12 +23,53 @@
 
     // Configure the view for the selected state
 }
+- (IBAction)likeAction:(id)sender {
+    if (self.post.likedByUser == NO){
+        [self.post incrementKey:@"likeCount"];
+        self.post.likedByUser = YES;
+    } else{
+        self.post.likedByUser = NO;
+    }
+    
+    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self refreshLikes];
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)refreshLikes{
+    UIImage *emptyHeart = [UIImage imageNamed:@"heart.fill"];
+        UIImage *fullHeart = [UIImage imageNamed:@"heart"];
+    [self.likeButton setSelected:NO];
+        [self.likeButton setHighlighted:NO];
+    
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
+    if (self.post.likedByUser == YES){
+        
+        NSLog(@"full!");
+        [self.likeButton setImage:fullHeart
+                                   forState:UIControlStateNormal];
+    }
+    else{
+        
+        NSLog(@"empty!");
+        [self.likeButton setImage:emptyHeart
+                                   forState:UIControlStateNormal];
+    }
+    
+}
+
 
 - (void)setPost:(Post *)post {
     self.postDescription.text = post.caption;
     self.postImage.image = [UIImage imageWithData:[post.image getData]];
     [post.author fetchIfNeeded];
     self.posterName.text = post.author.username;
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
     
     long datePostedAsInt;
         
