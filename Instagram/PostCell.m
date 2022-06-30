@@ -8,6 +8,10 @@
 #import "PostCell.h"
 
 @implementation PostCell
+- (IBAction)likePost:(id)sender {
+}
+- (IBAction)commentOnPost:(id)sender {
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -23,6 +27,8 @@
 - (void)setPost:(Post *)post {
     self.postDescription.text = post.caption;
     self.postImage.image = [UIImage imageWithData:[post.image getData]];
+    [post.author fetchIfNeeded];
+    self.posterName.text = post.author.username;
 }
 
 @end
