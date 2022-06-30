@@ -10,6 +10,7 @@
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
 #import "PostCell.h"
+#import "DetailsViewController.h"
 
 @interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *postTableView;
@@ -17,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (strong, nonatomic) NSArray *arrayOfPosts;
+@property (weak, nonatomic) IBOutlet UILabel *dateView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
@@ -82,14 +84,22 @@
     // Do any additional setup after loading the view.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"detailsSegue"]) {
+
+        
+        
+        UITableViewCell *cell = sender;
+        NSIndexPath *indexPath = [self.postTableView indexPathForCell:cell];
+        Post *dataToPass = self.arrayOfPosts[indexPath.row];
+        DetailsViewController *detailsController = [segue destinationViewController];
+        detailsController.post = dataToPass;
+    }
 }
-*/
+
 
 @end

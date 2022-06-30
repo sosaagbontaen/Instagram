@@ -52,9 +52,9 @@
 }
 
 - (IBAction)shareAction:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{}];
     UIImage *resizedImage = [self resizeImage:self.imagePickerView.image withSize:CGSizeMake(300, 300)];
     [Post postUserImage:resizedImage withCaption:self.CaptionView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        [self dismissViewControllerAnimated:YES completion:^{}];
     }];
 }
 
